@@ -13,8 +13,8 @@ function searchDataBase(query) {
     connection.query(query, (err, results) => {
       if (err) reject(err);
       resolve(results);
-    })
-  })
+    });
+  });
 }
 
 module.exports = searchDataBase;
