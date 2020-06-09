@@ -8,7 +8,7 @@ class Series {
   }
 
   static async getSerieById(id) {
-    const query = `SELECT s1.id, s1.name, ge.type, s1.description, s1.release_date, s1.favorite, s1.image 
+    const query = `SELECT s1.id, s1.name, ge.type, s1.description, s1.release_date, s1.favorite, s1.image
     FROM series as s1 INNER JOIN genre as ge ON s1.genre_id = ge.id_genre WHERE s1.id = ${id}`;
     const serie = await searchDataBase(query);
     return serie[0];
