@@ -44,21 +44,21 @@ async function likeDeslike(id) {
   if (isLiked[0].favorite === 1) favorite = 0;
   else favorite = 1;
 
-  const query = `UPDATE series SET favorite = ${favorite} WHERE series_id = ${id}`;
-  await conn.query(query, (err, results) => {
+  const updateQuery = `UPDATE series SET favorite = ${favorite} WHERE series_id = ${id}`;
+  await conn.query(updateQuery, (err, results) => {
     if (err) throw err;
     return results;
   });
 }
 
 async function showLikedSeries() {
-  const query = 'SELECT series_id, name FROM series WHERE favorite = 1 ORDER BY name';
+  const selectFavoriteSeries = 'SELECT series_id, name FROM series WHERE favorite = 1 ORDER BY name';
   return new Promise((resolve, reject) => {
-    conn.query(query, (err, results) => {
+    conn.query(selectFavoriteSeries, (err, results) => {
       if (err) return reject(err);
-      const listSeries = [];
-      results.map(seriesData => listSeries.push(handleSeriesData(seriesData)));
-      return resolve(listSeries);
+      const favoriteSeries = [];
+      results.map(seriesData => favoriteSeries.push(handleSeriesData(seriesData)));
+      return resolve(favoriteSeries);
     });
   });
 }
