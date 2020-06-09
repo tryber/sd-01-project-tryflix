@@ -14,7 +14,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'public', 'images')));
 const apiRoutes = express.Router();
 
 apiRoutes.get('/', series.listSeries);
-apiRoutes.get('/liked', rescue(series.listLikedSeries));
+apiRoutes.get('/liked', rescue(series.showLikedSeries));
 apiRoutes.get('/:id', rescue(series.showSeriesDetails));
 apiRoutes.put('/:id', rescue(series.updateLiked));
 
