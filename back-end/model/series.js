@@ -1,22 +1,21 @@
 const conn = require('./connection');
-const { likedToBoolean } = require('../service/utils');
+const handleSeriesData = require('../service/utils');
 
 function showSeries() {
   const query = 'SELECT series_id, name, favorite FROM series ORDER BY name';
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     conn.query(query, (err, results) => {
       if (err) return reject(err);
 
       const listSeries = [];
-
-      results.map(serieData => listSeries.push(likedToBoolean(serieData)));
-      resolve(listSeries);
+      results.map(seriesData => listSeries.push(handleSeriesData(seriesData)));
+      return resolve(listSeries);
     });
   });
 }
 
-function detailSerie(id) {
+function seriesDetails(id) {
   const query = `SELECT s.series_id, s.name, g.genre, s.description,
   DATE_FORMAT(s.release_date, "%d/%m/%Y") AS releaseDate,
   s.favorite FROM series AS s
@@ -24,17 +23,49 @@ function detailSerie(id) {
   ON s.genre_id = g.genre_id
   WHERE s.series_id = ${id};`;
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     conn.query(query, (err, results) => {
       if (err) return reject(err);
-      if (!results[0]) return resolve({ message: 'Movie is not found!' });
+      return resolve(handleSeriesData(results[0]));
+    });
+  });
+}
 
-      resolve(likedToBoolean(results[0]));
+async function likeDeslike(id) {
+  const serireIsFavorite = `SELECT favorite FROM series WHERE series_id = ${id}`;
+  const isLiked = await new Promise((resolve, reject) => {
+    conn.query(serireIsFavorite, (err, result) => {
+      if (err) reject(err);
+      resolve(result);
+    });
+  });
+
+  let favorite = 0;
+  if (isLiked[0].favorite === 1) favorite = 0;
+  else favorite = 1;
+
+  const query = `UPDATE series SET favorite = ${favorite} WHERE series_id = ${id}`;
+  await conn.query(query, (err, results) => {
+    if (err) throw err;
+    return results;
+  });
+}
+
+async function showLikedSeries() {
+  const query = 'SELECT series_id, name FROM series WHERE favorite = 1 ORDER BY name';
+  return new Promise((resolve, reject) => {
+    conn.query(query, (err, results) => {
+      if (err) return reject(err);
+      const listSeries = [];
+      results.map(seriesData => listSeries.push(handleSeriesData(seriesData)));
+      return resolve(listSeries);
     });
   });
 }
 
 module.exports = {
   showSeries,
-  detailSerie,
+  seriesDetails,
+  likeDeslike,
+  showLikedSeries,
 };
