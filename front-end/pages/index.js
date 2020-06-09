@@ -4,11 +4,11 @@ import Link from 'next/link';
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Favoritar';
   return 'Desfavoritar';
-}
+};
 
 export async function getServerSideProps() {
   const response = await fetch(
-    'http://localhost:3001'
+    'http://localhost:3001',
   );
   const series = await response.json();
 
@@ -22,7 +22,7 @@ export async function getServerSideProps() {
 const mainPage = ({ series }) => (
   <div>
     <h1>Series</h1>
-    <Link href={`/liked`}>
+    <Link href={'/liked'}>
       <a>Favoritos</a>
     </Link>
     <ul>
@@ -31,7 +31,7 @@ const mainPage = ({ series }) => (
           <h1>Title: {name}</h1>
           <h3>{favoriteSerie(liked)}</h3>
           <Link href={`/${id}`}>
-            <img src={`${image}`} />
+            <img alt={`title-${name}`} src={image} />
           </Link>
         </section>
       ))}

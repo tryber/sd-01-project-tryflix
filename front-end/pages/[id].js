@@ -4,11 +4,11 @@ import Link from 'next/link';
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Série Desfavoritada';
   return 'Série Favoritada';
-}
+};
 
 export async function getServerSideProps({ params: { id } }) {
   const response = await fetch(
-    `http://localhost:3001/${id}`
+    `http://localhost:3001/${id}`,
   );
   const serie = await response.json();
 
