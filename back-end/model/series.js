@@ -19,7 +19,7 @@ function showSeries() {
 
 function detailSerie(id) {
   const query = `SELECT s.series_id, s.name, g.genre, s.description,
-  CONCAT(DAY(s.release_date),'/', MONTH(s.release_date),'/', YEAR(s.release_date)) AS releaseDate,
+  DATE_FORMAT(s.release_date, "%d/%m/%Y") AS releaseDate,
   s.favorite FROM series AS s
   INNER JOIN genre AS g
   ON s.genre_id = g.genre_id
