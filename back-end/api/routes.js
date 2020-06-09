@@ -1,3 +1,3 @@
 module.exports = {
-    seriesList: require('../controllers/seriesList'),
+    seriesList: require('../controllers/series'),
 };
