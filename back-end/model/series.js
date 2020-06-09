@@ -1,10 +1,5 @@
 const conn = require('./connection');
-
-function likedToBoolean({ series_id: id, favorite: liked, ...rest }) {
-  if (liked === 0) liked = false;
-  else liked = true;
-  return { id, ...rest, liked };
-}
+const { likedToBoolean } = require('../service/utils');
 
 function showSeries() {
   const query = 'SELECT series_id, name, favorite FROM series ORDER BY name';
@@ -34,16 +29,15 @@ function detailSerie(id) {
     conn.query(query, (err, results) => {
       if (err) return reject(err);
 
-      const details = results.find(({series_id}) => series_id === id);
-      console.log(likedToBoolean(details))
-      resolve(likedToBoolean(details));
+      if(!results[0]) return resolve('Movie is not found!');
+
+      console.log(likedToBoolean(results[0]))
+      resolve(likedToBoolean(results[0]));
     });
   });
 }
 
-// showSeries()
-detailSerie(7);
-
 module.exports = {
   showSeries,
+  detailSerie,
 };
