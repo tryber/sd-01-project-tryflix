@@ -21,8 +21,7 @@ exports.updateLiked = async (req, res) => {
   return res.status(200).send({ message: 'Success!' });
 };
 
-exports.listLikedSeries = async (_req, res) => {
-  const likedSeries = await model.showLikedSeries();
-
+exports.showLikedSeries = async (_req, res) => {
+  const likedSeries = await model.likedSeries();
   return res.status(200).json(likedSeries);
 };
