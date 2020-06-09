@@ -13,8 +13,9 @@ function factory() {
   apiRoutes.use(express.static(path.resolve(__dirname, '..', 'public', 'images')));
   apiRoutes.get('/series', rescue(series.getAll));
   apiRoutes.get('/series/:id', rescue(series.getOne));
+  apiRoutes.put('/favorito/:id', rescue(series.updateFavorite));
 
-  apiRoutes.use((req, res) => (
+  apiRoutes.use((_req, res) => (
     res.status(404).json({ message: 'SHOW DE BOLA NADA APARECEU, BURRO!' })
   ));
   app.use(apiRoutes);
