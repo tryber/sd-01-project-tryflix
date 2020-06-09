@@ -27,7 +27,7 @@ function detailSerie(id) {
   return new Promise(async (resolve, reject) => {
     conn.query(query, (err, results) => {
       if (err) return reject(err);
-      if(!results[0]) return resolve({ message: 'Movie is not found!' });
+      if (!results[0]) return resolve({ message: 'Movie is not found!' });
 
       resolve(likedToBoolean(results[0]));
     });
