@@ -22,7 +22,7 @@ exports.updateLiked = async (req, res) => {
 };
 
 exports.listLikedSeries = async (_req, res) => {
-  const list = await model.showLikedSeries();
+  const likedSeries = await model.showLikedSeries();
 
-  return res.status(200).json(list);
-}
+  return res.status(200).json(likedSeries);
+};
