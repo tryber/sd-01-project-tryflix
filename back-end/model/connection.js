@@ -1,7 +1,7 @@
 const path = require('path');
 const mysql = require('mysql');
 
-const enviromentVariable = path.resolve(__dirname, '..', '.env');
+const enviromentVariable = path.resolve(__dirname, '..', '..', '.env');
 require('dotenv').config({ path: enviromentVariable });
 
 const connection = mysql.createConnection({

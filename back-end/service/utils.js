@@ -1,7 +1,9 @@
-const likedToBoolean = ({ series_id: id, favorite: liked, ...rest }) => {
+const likedToBoolean = ({ series_id: id, favorite: liked, name, ...rest }) => {
   if (liked === 0) liked = false;
   else liked = true;
-  return { id, ...rest, liked };
+  const imageName = name.replace(' ', '_').toLowerCase();
+  const imageLink = `http://localhost:3001/${imageName}.png`;
+  return { id, name, ...rest, imageLink, liked };
 }
 
 const rescue = fn => async (req, res, next) => {

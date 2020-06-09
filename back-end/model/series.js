@@ -11,7 +11,6 @@ function showSeries() {
       const listSeries = [];
 
       results.map(serieData => listSeries.push(likedToBoolean(serieData)));
-      console.log(listSeries);
       resolve(listSeries);
     });
   });
@@ -19,7 +18,7 @@ function showSeries() {
 
 function detailSerie(id) {
   const query = `SELECT s.series_id, s.name, g.genre, s.description,
-  CONCAT(DAY(s.release_date),'/', MONTH(s.release_date),'/', YEAR(s.release_date)) AS releaseDate,
+  DATE_FORMAT(s.release_date, "%d/%m/%Y") AS releaseDate,
   s.favorite FROM series AS s
   INNER JOIN genre AS g
   ON s.genre_id = g.genre_id
@@ -28,10 +27,8 @@ function detailSerie(id) {
   return new Promise(async (resolve, reject) => {
     conn.query(query, (err, results) => {
       if (err) return reject(err);
+      if(!results[0]) return resolve({ message: 'Movie is not found!' });
 
-      if(!results[0]) return resolve('Movie is not found!');
-
-      console.log(likedToBoolean(results[0]))
       resolve(likedToBoolean(results[0]));
     });
   });
