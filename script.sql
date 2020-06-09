@@ -1,25 +1,25 @@
 CREATE SCHEMA IF NOT EXISTS tryflix DEFAULT CHARACTER SET utf8 ;
 USE tryflix ;
 
-CREATE TABLE IF NOT EXISTS tryflix.gender (
-  gender_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  name VARCHAR(25) NOT NULL
+CREATE TABLE IF NOT EXISTS tryflix.genre (
+  genre_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  genre VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tryflix.series (
   series_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
-  synopsis VARCHAR(250) NOT NULL,
+  description VARCHAR(250) NOT NULL,
   release_date DATETIME NOT NULL,
   favorite TINYINT DEFAULT 0,
-  gender_id INT NOT NULL,
-  FOREIGN KEY (gender_id) REFERENCES tryflix.gender (gender_id)
+  genre_id INT NOT NULL,
+  FOREIGN KEY (genre_id) REFERENCES tryflix.genre (genre_id)
 );
 
-INSERT INTO gender (name) VALUES
+INSERT INTO genre (genre) VALUES
 ('Fantasia'), ('Ficção Científica'), ('Drama'), ('Comédia'), ('Ficção Policial'), ('Crime');
 
-INSERT INTO series (name, synopsis, release_date, gender_id) VALUES
+INSERT INTO series (name, description, release_date, genre_id) VALUES
 ('The Witcher', 'O personagem de Cavill é um mutante caçador de monstros, que luta para encontrar seu lugar em um mundo onde as pessoas provam com frequência serem mais perversas que as bestas.', '2019-12-20', 1),
 ('Dark', 'Quatro diferentes famílias vivem em uma pequena cidade alemã. Suas vidas pacatas são completamente atormentadas quando duas crianças desaparecem misteriosamente e os segredos obscuros das suas famílias começam a ser desvendados.', '2017-12-01', 2),
 ('Peaky Blinders', 'Série sobre uma família de gângsteres na Inglaterra no começo do século 20.', '2013-09-12', 3),
