@@ -1,23 +1,18 @@
-const likedToBoolean = ({ series_id: id, favorite, name, ...rest }) => {
-  let liked;
-  if (favorite === 0) liked = false;
-  else liked = true;
-  const imageName = name.replace(' ', '_').toLowerCase();
-  const imageLink = `http://localhost:3001/${imageName}.png`;
-  return { id, name, ...rest, imageLink, liked };
+const handleImageLink = (name) => {
+  const imageName = name.replace(/[- ]/g, '_').toLowerCase();
+  return `http://localhost:3001/${imageName}.png`;
 };
 
-const rescue = fn => async (req, res, next) => {
-  try {
-    await fn(req, res, next);
-  } catch (err) {
-    console.log(err.name, err.message);
-    res.status(400).json({ message: err.name, error: err.message });
-    next(err);
-  }
+const likedToBool = (favorite) => {
+  if (favorite === 0) return false;
+  return true;
 };
 
-module.exports = {
-  likedToBoolean,
-  rescue,
+const handleSeriesData = ({ series_id: id, favorite, name, ...rest }) => {
+  const image = handleImageLink(name);
+  const seriesData = { id, name, ...rest, image };
+  if (favorite) seriesData.liked = likedToBool(favorite);
+  return seriesData;
 };
+
+module.exports = handleSeriesData;

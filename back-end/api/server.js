@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
+const rescue = require('../rescue');
 const { series } = require('./routes');
-const { rescue } = require('../service/utils');
 
 const app = express();
 
@@ -14,7 +14,9 @@ app.use(express.static(path.resolve(__dirname, '..', 'public', 'images')));
 const apiRoutes = express.Router();
 
 apiRoutes.get('/', series.listSeries);
-apiRoutes.get('/:id', rescue(series.detailAboutSerie));
+apiRoutes.get('/liked', rescue(series.listLikedSeries));
+apiRoutes.get('/:id', rescue(series.showSeriesDetails));
+apiRoutes.put('/:id', rescue(series.updateLiked));
 
 app.use(apiRoutes);
 
