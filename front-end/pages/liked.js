@@ -8,7 +8,7 @@ const favoriteSerie = (liked) => {
 
 export async function getServerSideProps() {
   const response = await fetch(
-    'http://localhost:3001'
+    'http://localhost:3001/liked'
   );
   const series = await response.json();
 
@@ -21,9 +21,9 @@ export async function getServerSideProps() {
 
 const mainPage = ({ series }) => (
   <div>
-    <h1>Series</h1>
-    <Link href={`/liked`}>
-      <a>Favoritos</a>
+    <h1>Meus Favoritos</h1>
+    <Link href={'/'}>
+      <a>Voltar</a>
     </Link>
     <ul>
       {series.map(({ id, name, image, liked }) => (
