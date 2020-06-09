@@ -18,7 +18,7 @@ apiRoutes.get('/:id', rescue(series.detailAboutSerie));
 
 app.use(apiRoutes);
 
-app.use('*', (_req, res) => res.status(404).send('Page Not Found'));
+app.use('*', (_req, res) => res.status(404).send({ message: 'Page Not Found' }));
 
 app.use((err, _req, res, _next) => res.status(500).json({ message: err.message }));
 
