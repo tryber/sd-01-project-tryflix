@@ -10,6 +10,6 @@ const putAPI = async (id) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 module.exports = putAPI;

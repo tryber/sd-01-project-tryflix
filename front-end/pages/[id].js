@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import Router from 'next/router'
+import Router from 'next/router';
 
 import putAPI from '../service/localhostAPI';
 
 const favoriteSerie = (liked) => {
-  if (liked === false) return 'Série Desfavoritada';
-  return 'Série Favoritada';
+  if (liked === false) return 'Série Desfavorita';
+  return 'Série Favorita';
 };
 
 export async function getServerSideProps({ params: { id } }) {
