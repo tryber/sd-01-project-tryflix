@@ -20,9 +20,7 @@ const changeFavorite = async (isFavorite, setReload, id) => {
 const CardSerie = ({ details }) => {
   const [reload, setReload] = useState(false);
   const [data, setData] = useState(details);
-  console.log(details,'detail')
   useEffect(() => {
-    console.log('foi')
     if (reload) {
       getApi(`http://localhost:3001/series/${data.id}`)
         .then(res => {
@@ -32,10 +30,6 @@ const CardSerie = ({ details }) => {
         });
     }
   }, [reload, data])
-
-  useEffect(()=>{
-    console.log('foi')
-  },[data])
 
   const { id, name, genre, description, releaseDate, liked, image } = data;
   return (

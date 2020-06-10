@@ -40,7 +40,6 @@ const getAllFavorite = async (_req, res) => {
     const sortedList = services.sortedList(result);
     return res.status(200).json(sortedList);
   }
-  console.log('data',data)
   res.status(200).json(data);
 }
 

@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import CardSerie from '../../components/CardSerie';
 import React, { useState, useEffect } from 'react';
 import getApi from '../../service/api';

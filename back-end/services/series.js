@@ -10,10 +10,10 @@ const connectionPromise = valueQuery => {
 };
 
 const getPathImage = name => (
-  `http://localhost:${process.env.PORTBACK}/${name.toLowerCase().replace(' ', '_')}.png`
+  `http://localhost:${process.env.PORTBACK}/${name.toLowerCase().replace(' ', '_').replace('-', '_')}.png`
 );
 
-const updateImages = item => {console.log('updateImages', item)
+const updateImages = item => {
   if (item.length >= 1) return item.map(element => ({ ...element, image: getPathImage(element.name) }));
   return { ...item, image: getPathImage(item.name) };
 };
