@@ -14,7 +14,7 @@ const getPathImage = name => (
 );
 
 const updateImages = item => {
-  if (item.length >= 1) item.map(element => ({ ...element, image: getPathImage(element.name) }));
+  if (item.length >= 1) return item.map(element => ({ ...element, image: getPathImage(element.name) }));
   return { ...item, image: getPathImage(item.name) };
 };
 

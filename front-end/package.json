@@ -8,8 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.19.2",
+=======
+    "dotenv": "^8.2.0",
+>>>>>>> f257c317594de4c449df8fb8b55e94854ea3b291
     "next": "9.4.4",
+    "node-fetch": "^2.6.0",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   }
