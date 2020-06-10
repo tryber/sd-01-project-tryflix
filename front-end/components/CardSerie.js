@@ -17,7 +17,7 @@ const favoriteElement = (isFavorite, setReload, id) => {
       <button
         type="button"
         onClick={() => changeFavorite(isFavorite, setReload, id)}
-       >
+      >
         Desfavoritar
       </button>
     );
@@ -25,7 +25,7 @@ const favoriteElement = (isFavorite, setReload, id) => {
     <button
       type="button"
       onClick={() => changeFavorite(isFavorite, setReload, id)}
-     >
+    >
       Favoritar
     </button>
   );
