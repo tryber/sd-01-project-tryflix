@@ -22,7 +22,7 @@ const ListSeries = (series, title, linkText, link = '') => (
           <button
             type="button"
             onClick={() => {
-              putAPI(serie.id);
+              putAPI(id);
               Router.reload();
             }}
           >
