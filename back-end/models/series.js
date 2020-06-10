@@ -5,7 +5,7 @@ const getAllSeries = async () => {
   return services.connectionPromise(query);
 };
 
-const getOneSeries = async id => {
+const getOneSeries = async (id) => {
   const query = `call getOneSeries(${id})`;
   return services.connectionPromise(query);
 };

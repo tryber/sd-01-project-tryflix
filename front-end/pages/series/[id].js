@@ -12,7 +12,8 @@ export async function getServerSideProps({ params: { id } }) {
   };
 }
 
-const Details = ({ data }) => {
+const Details = (props) => {
+  const { data } = props;
   const [reload, setReload] = useState(false);
   useEffect(() => {});
   return (

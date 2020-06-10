@@ -1,13 +1,12 @@
 const conn = require('../models/connection');
 
-const connectionPromise = valueQuery => {
-  return new Promise((resolve, reject) => {
+const connectionPromise = (valueQuery) =>
+  new Promise((resolve, reject) => {
     conn.query(valueQuery, (err, result) => {
       if (err) reject(err);
       resolve(result[0] || result);
     });
   });
-};
 
 const getPathImage = name =>
   `http://localhost:${process.env.PORTBACK}/${name
@@ -15,7 +14,7 @@ const getPathImage = name =>
     .replace(' ', '_')
     .replace('-', '_')}.png`;
 
-const updateImages = item => {
+const updateImages = (item) => {
   if (item.length >= 1)
     return item.map(element => ({
       ...element,
