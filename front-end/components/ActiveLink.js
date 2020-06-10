@@ -20,10 +20,12 @@ const ActiveLink = ({ children, activeClassName, ...props }) => {
       })}
     </Link>
   );
-}
+};
 
 ActiveLink.propTypes = {
   activeClassName: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
 };
 
 export default ActiveLink;

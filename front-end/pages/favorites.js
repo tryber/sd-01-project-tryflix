@@ -21,7 +21,7 @@ class Favorites extends React.Component {
     }
   }
 
-  changeFavorite = (id) => {
+  changeFavorite(id) {
     fetch(`http://localhost:3001/favorite/${id}`);
     fetch('http://localhost:3001/favorite')
       .then((res) => res.json())

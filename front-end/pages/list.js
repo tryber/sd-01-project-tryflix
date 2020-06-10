@@ -21,7 +21,7 @@ class List extends React.Component {
     }
   }
 
-  changeFavorite = (id) => {
+  changeFavorite(id) {
     fetch(`http://localhost:3001/favorite/${id}`);
     fetch('http://localhost:3001/series')
       .then((res) => res.json())

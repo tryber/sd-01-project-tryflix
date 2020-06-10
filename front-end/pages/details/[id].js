@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ActiveLink from '../../components/ActiveLink';
 
 export async function getServerSideProps({ params: { id: serieId } }) {
@@ -26,12 +27,16 @@ const Details = ({ serie }) => (
     <h1>{serie.name}</h1>
     {serie.favorite ? <p>Série favorita</p> : <p />}
     <div>
-      <img src={serie.image} />
+      <img src={serie.image} alt={serie.name} />
       <div>Gênero: {serie.type}</div>
       <div>Data de lançamento: {formatData(serie.release_date)}</div>
       <div>Descrição: {serie.description}</div>
     </div>
   </div>
 );
+
+Details.propTypes = {
+  serie: PropTypes.string.isRequired,
+};
 
 export default Details;
