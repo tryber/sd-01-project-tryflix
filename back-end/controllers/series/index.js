@@ -3,6 +3,8 @@ const services = require('../../services/series');
 
 const getAll = async (_req, res) => {
   const data = await Series.getAllSeries();
+  if (!data || data.length === 0)
+    return res.status(404).json({ message: 'ERROR' });
   const result = services.updateImages(data);
   const sortedList = services.sortedList(result);
   res.status(200).json(sortedList);
@@ -25,12 +27,22 @@ const updateFavorite = async (req, res) => {
   if (!isSeriesExist || isSeriesExist.length === 0)
     return res.status(404).json({ message: 'Serie not found' });
   const data = await Series.updateFavoriteSeries(liked, id);
-  if (data === 0) return res.status(400).json({ message: 'Error' })
+  if (data.affectedRows === 0) return res.status(400).json({ message: 'Update failed' });
   res.status(200).json({ message: 'Update success!' });
 };
+
+const getAllFavorite = async (req, res) => {
+  const data = await Series.getAllSeriesFavorite();
+  if (!data || data.length === 0)
+    return res.status(404).json({ message: 'ERROR' });
+  const result = services.updateImages(data);
+  const sortedList = services.sortedList(result);
+  res.status(200).json(sortedList);
+}
 
 module.exports = {
   getAll,
   getOne,
   updateFavorite,
+  getAllFavorite,
 };

@@ -15,8 +15,14 @@ const updateFavoriteSeries = async (liked, id) => {
   return services.connectionPromise(query);
 };
 
+const getAllSeriesFavorite = async () => {
+  const query = 'call getAllFavoriteSeries()';
+  return services.connectionPromise(query);
+};
+
 module.exports = {
   getAllSeries,
   getOneSeries,
   updateFavoriteSeries,
+  getAllSeriesFavorite,
 };
