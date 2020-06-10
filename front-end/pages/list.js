@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from '../components/Card';
 import ActiveLink from '../components/ActiveLink';
 
 export async function getServerSideProps() {
@@ -36,14 +37,7 @@ class List extends React.Component {
         </ActiveLink>
         {data.map((serie) => (
           <div key={serie.id}>
-            <ActiveLink activeClassName="active" href={`/details/${serie.id}`}>
-              <div>
-                <img src={serie.image} width="25%" />
-                <div>
-                  <div>{serie.name}</div>
-                </div>
-              </div>
-            </ActiveLink>
+            <Card serie={serie} />
             <button onClick={() => this.changeFavorite(serie.id)}>
               {serie.favorite ? "Desfavoritar" : "Favoritar"}
             </button>
