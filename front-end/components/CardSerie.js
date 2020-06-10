@@ -17,7 +17,7 @@ const favoriteElement = (isFavorite, setReload, id) => {
       <button
         type="button"
         onClick={() => changeFavorite(isFavorite, setReload, id)}
-        >
+       >
         Desfavoritar
       </button>
     );
@@ -25,7 +25,7 @@ const favoriteElement = (isFavorite, setReload, id) => {
     <button
       type="button"
       onClick={() => changeFavorite(isFavorite, setReload, id)}
-      >
+     >
       Favoritar
     </button>
   );
@@ -47,7 +47,7 @@ const CardSerie = ({ details }) => {
   const [data, setData] = useState(details);
   useEffect(() => {
     if (reload)
-      getApi(`http://localhost:3001/series/${data.id}`).then(res => {
+      getApi(`http://localhost:3001/series/${data.id}`).then((res) => {
         const { liked } = res;
         setData({ ...data, liked });
         setReload(false);
