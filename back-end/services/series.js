@@ -1,6 +1,6 @@
 const conn = require('../models/connection');
 
-const connectionPromise = (valueQuery) => {
+const connectionPromise = valueQuery => {
   return new Promise((resolve, reject) => {
     conn.query(valueQuery, (err, result) => {
       if (err) reject(err);
@@ -9,18 +9,13 @@ const connectionPromise = (valueQuery) => {
   })
 };
 
-const getPathImage = (name) => (
+const getPathImage = name => (
   `http://localhost:${process.env.PORT}/${name.toLowerCase().replace(' ', '_')}.png`
 );
 
-const updateImages = (item) => {
-  console.log(item)
-  if (item.length >= 1) {
-    return item.map(element => {
-      return { ...element, image: getPathImage(element.name) };
-    })
-  }
-  return { ...item, image: getPathImage(element.name) };
+const updateImages = item => {
+  if (item.length >= 1) item.map(element => ({ ...element, image: getPathImage(element.name) }));
+  return { ...item, image: getPathImage(item.name) };
 };
 
 const sortedList = (array) => (
@@ -35,4 +30,4 @@ module.exports = {
   connectionPromise,
   updateImages,
   sortedList,
-}
+};

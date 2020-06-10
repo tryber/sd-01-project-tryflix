@@ -20,7 +20,7 @@ const getOne = async (req, res) => {
 const updateFavorite = async (req, res) => {
   const { id } = req.params;
   const { liked } = req.body;
-  if (![0,1].includes(liked)) return res.status(422).json({ message: 'Invalid Data' });
+  if (![0, 1].includes(liked)) return res.status(422).json({ message: 'Invalid Data' });
   const isSeriesExist = await Series.getOneSeries(id);
   if (!isSeriesExist || isSeriesExist.length === 0)
     return res.status(404).json({ message: 'ERROR' });
