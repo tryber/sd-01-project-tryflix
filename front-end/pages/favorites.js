@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import ActiveLink from '../components/ActiveLink';
 
@@ -17,15 +18,15 @@ class Favorites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: ''
-    }
+      data: '',
+    };
   }
 
   changeFavorite(id) {
     fetch(`http://localhost:3001/favorite/${id}`);
     fetch('http://localhost:3001/favorite')
-      .then((res) => res.json())
-      .then((result) => this.setState({ data: result }));
+      .then(res => res.json())
+      .then(result => this.setState({ data: result }));
   }
 
   render() {
@@ -36,7 +37,7 @@ class Favorites extends React.Component {
         <ActiveLink activeClassName="active" href="/list">
           <a className="nav-link">Voltar</a>
         </ActiveLink>
-        {data.map((serie) => (
+        {data.map(serie => (
           <div>
             <Card serie={serie} />
             <button onClick={() => this.changeFavorite(serie.id)}>
@@ -46,7 +47,11 @@ class Favorites extends React.Component {
         ))}
       </div>
     );
-  };
+  }
 }
+
+Favorites.propTypes = {
+  serie: PropTypes.string.isRequired,
+};
 
 export default Favorites;

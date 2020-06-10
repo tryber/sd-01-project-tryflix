@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import ActiveLink from '../components/ActiveLink';
 
@@ -17,15 +18,15 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: ''
-    }
+      data: '',
+    };
   }
 
   changeFavorite(id) {
     fetch(`http://localhost:3001/favorite/${id}`);
     fetch('http://localhost:3001/series')
-      .then((res) => res.json())
-      .then((result) => this.setState({ data: result }));
+      .then(res => res.json())
+      .then(result => this.setState({ data: result }));
   }
 
   render() {
@@ -35,17 +36,21 @@ class List extends React.Component {
         <ActiveLink activeClassName="active" href="/favorites">
           <a className="nav-link">Meus favoritos</a>
         </ActiveLink>
-        {data.map((serie) => (
+        {data.map(serie => (
           <div key={serie.id}>
             <Card serie={serie} />
             <button onClick={() => this.changeFavorite(serie.id)}>
-              {serie.favorite ? "Desfavoritar" : "Favoritar"}
+              {serie.favorite ? 'Desfavoritar' : 'Favoritar'}
             </button>
           </div>
         ))}
       </div>
     );
-  };
+  }
 }
+
+List.propTypes = {
+  serie: PropTypes.string.isRequired,
+};
 
 export default List;
