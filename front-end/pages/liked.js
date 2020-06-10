@@ -1,13 +1,10 @@
-import fetch from 'node-fetch';
 import PropTypes from 'prop-types';
 
 import ListSeries from '../components/ListSeries';
+import { getAPI } from '../service/localhostAPI';
 
 export async function getServerSideProps() {
-  const response = await fetch(
-    'http://localhost:3001/liked',
-  );
-  const series = await response.json();
+  const series = await getAPI('liked');
 
   return {
     props: {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 
-import putAPI from '../service/localhostAPI';
+import { putAPI } from '../service/localhostAPI';
 
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Série Desfavorita';
