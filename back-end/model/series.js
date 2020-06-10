@@ -51,14 +51,13 @@ async function likeDeslike(id) {
   });
 }
 
-async function showLikedSeries() {
+async function likedSeries() {
   const selectFavoriteSeries = 'SELECT series_id, name FROM series WHERE favorite = 1 ORDER BY name';
   return new Promise((resolve, reject) => {
     conn.query(selectFavoriteSeries, (err, results) => {
       if (err) return reject(err);
-      const favoriteSeries = [];
-      results.map(seriesData => favoriteSeries.push(handleSeriesData(seriesData)));
-      return resolve(favoriteSeries);
+      const favoriteSeries = results.map(seriesData => handleSeriesData(seriesData));
+      resolve(favoriteSeries);
     });
   });
 }
@@ -67,5 +66,5 @@ module.exports = {
   showSeries,
   seriesDetails,
   likeDeslike,
-  showLikedSeries,
+  likedSeries,
 };
