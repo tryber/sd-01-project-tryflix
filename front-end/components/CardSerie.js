@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import axios from 'axios';
 import getApi from '../service/api';
@@ -15,14 +16,16 @@ const favoriteElement = (isFavorite, setReload, id) => {
     return (
       <button
         type="button"
-        onClick={() => changeFavorite(isFavorite, setReload, id)}>
+        onClick={() => changeFavorite(isFavorite, setReload, id)}
+        >
         Desfavoritar
       </button>
     );
   return (
     <button
       type="button"
-      onClick={() => changeFavorite(isFavorite, setReload, id)}>
+      onClick={() => changeFavorite(isFavorite, setReload, id)}
+      >
       Favoritar
     </button>
   );

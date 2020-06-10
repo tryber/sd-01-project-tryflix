@@ -1,4 +1,5 @@
 import React from 'react;';
+import PropTypes from 'prop-types';
 import ListSeries from '../components/ListSeries';
 import getApi from '../service/api';
 

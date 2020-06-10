@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import CardSerie from '../../components/CardSerie';
 import getApi from '../../service/api';
 
