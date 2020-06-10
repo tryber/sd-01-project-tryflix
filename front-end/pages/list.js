@@ -50,7 +50,7 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-  serie: PropTypes.string.isRequired,
+  series: PropTypes.string.isRequired,
 };
 
 export default List;

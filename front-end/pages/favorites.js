@@ -51,7 +51,7 @@ class Favorites extends React.Component {
 }
 
 Favorites.propTypes = {
-  serie: PropTypes.string.isRequired,
+  series: PropTypes.string.isRequired,
 };
 
 export default Favorites;
