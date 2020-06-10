@@ -35,11 +35,12 @@ const getAllFavorite = async (_req, res) => {
   const data = await Series.getAllSeriesFavorite();
   if (!data)
     return res.status(404).json({ message: 'ERROR' });
-  if (data.length > 1) {
+  if (data.length >= 1) {
     const result = services.updateImages(data);
     const sortedList = services.sortedList(result);
     return res.status(200).json(sortedList);
   }
+  console.log('data',data)
   res.status(200).json(data);
 }
 

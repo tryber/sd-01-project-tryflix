@@ -5,8 +5,8 @@ export default function Home() {
     <div className="container">
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <Link href="/favoritos">Favoritos</Link>
-        <Link href="/series">series</Link>
+        <h2><Link href="/favoritos">Favoritos</Link></h2>
+        <h2><Link href="/series">series</Link></h2>
     </div>
   )
 }
