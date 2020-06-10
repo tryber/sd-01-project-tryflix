@@ -31,13 +31,16 @@ const updateFavorite = async (req, res) => {
   res.status(200).json({ message: 'Update success!' });
 };
 
-const getAllFavorite = async (req, res) => {
+const getAllFavorite = async (_req, res) => {
   const data = await Series.getAllSeriesFavorite();
-  if (!data || data.length === 0)
+  if (!data)
     return res.status(404).json({ message: 'ERROR' });
-  const result = services.updateImages(data);
-  const sortedList = services.sortedList(result);
-  res.status(200).json(sortedList);
+  if (data.length > 1) {
+    const result = services.updateImages(data);
+    const sortedList = services.sortedList(result);
+    return res.status(200).json(sortedList);
+  }
+  res.status(200).json(data);
 }
 
 module.exports = {
