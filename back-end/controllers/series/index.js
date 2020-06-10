@@ -25,7 +25,7 @@ const updateFavorite = async (req, res) => {
   if (!isSeriesExist || isSeriesExist.length === 0)
     return res.status(404).json({ message: 'Serie not found' });
   const data = await Series.updateFavoriteSeries(liked, id);
-  if (data === 0) return res.status(400).json({ message: 'Error' })
+  if (data.affectedRows === 0) return res.status(400).json({ message: 'Update failed' });
   res.status(200).json({ message: 'Update success!' });
 };
 
