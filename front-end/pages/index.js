@@ -19,7 +19,7 @@ export async function getServerSideProps() {
   };
 }
 
-const mainPage = ({ series }) => (
+const seriesList = ({ series }) => (
   <div>
     <h1>Series</h1>
     <Link href={'/liked'}>
@@ -39,4 +39,8 @@ const mainPage = ({ series }) => (
   </div>
 );
 
-export default mainPage;
+detailSerie.propTypes = {
+  series: PropTypes.object.isRequired,
+}
+
+export default seriesList;

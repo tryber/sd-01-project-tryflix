@@ -10,8 +10,8 @@ const likedToBool = (favorite) => {
 
 const handleSeriesData = ({ series_id: id, favorite, name, ...rest }) => {
   const image = handleImageLink(name);
-  const seriesData = { id, name, ...rest, image };
-  if (favorite) seriesData.liked = likedToBool(favorite);
+  const liked = likedToBool(favorite);
+  const seriesData = { id, name, ...rest, image, liked };
   return seriesData;
 };
 

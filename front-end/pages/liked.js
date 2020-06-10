@@ -19,7 +19,7 @@ export async function getServerSideProps() {
   };
 }
 
-const mainPage = ({ series }) => (
+const favoritesSeries = ({ series }) => (
   <div>
     <h1>Meus Favoritos</h1>
     <Link href={'/'}>
@@ -39,4 +39,17 @@ const mainPage = ({ series }) => (
   </div>
 );
 
-export default mainPage;
+favoritesSeries.propTypes = {
+  series: PropTypes.object,
+}
+
+favoritesSeries.defaulProps = {
+  series: {
+    id: 1,
+    name: 'Adicione alguma série',
+    image: 'Visualize as imagens das suas séries',
+    liked: false,
+  }
+}
+
+export default favoritesSeries;

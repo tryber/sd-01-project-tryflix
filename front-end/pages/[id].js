@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Série Desfavoritada';
@@ -19,7 +20,7 @@ export async function getServerSideProps({ params: { id } }) {
   };
 }
 
-const mainPage = ({ serie }) => (
+const detailSerie = ({ serie }) => (
   <div>
     <h1>{serie.name}</h1>
     <Link href={'/'}>
@@ -29,7 +30,7 @@ const mainPage = ({ serie }) => (
       <section>
         <h1>Título: {serie.name}</h1>
         <h3>{favoriteSerie(serie.liked)}</h3>
-        <img src={`${serie.image}`} />
+        <img alt={serie.name} src={serie.image} />
         <h3>Gênero: {serie.genre}</h3>
         <h3>Data de Lançamento: {serie.releaseDate}</h3>
         <p>Sinopse: {serie.description}</p>
@@ -38,4 +39,8 @@ const mainPage = ({ serie }) => (
   </div>
 );
 
-export default mainPage;
+detailSerie.propTypes = {
+  serie: PropTypes.object.isRequired,
+}
+
+export default detailSerie;
