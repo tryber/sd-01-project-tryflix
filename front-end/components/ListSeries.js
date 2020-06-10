@@ -19,7 +19,12 @@ const ListSeries = (series, title, linkText, link = '') => (
       {series.map(({ id, name, image, liked }) => (
         <section key={id}>
           <h1>Title: {name}</h1>
-          <h3 onClick={() => (putAPI(id), Router.reload())}>{favoriteSerie(liked)}</h3>
+          <p onClick={() => {
+            putAPI(id);
+            Router.reload();
+          }}>
+            {favoriteSerie(liked)}
+          </p>
           <Link href={`/${id}`}>
             <img alt={`title-${name}`} src={image} />
           </Link>
