@@ -28,29 +28,33 @@ const favoriteElement = (isFavorite, setReload, id) => {
   );
 };
 
-const CardSerie = (props) => {
-  const { details } = props
+const card = (id, name, genre, description, releaseDate, liked, setReload) => (
+  <div>
+    {!name || <h1>{name}</h1>}
+    {!genre || <h2>{genre}</h2>}
+    {!description || <p>{description}</p>}
+    {!releaseDate || <h2>{releaseDate.split('T')[0]}</h2>}
+    {!liked || liked === 0 || <h2>Favorito</h2>}
+    {![1, 0].includes(liked) || favoriteElement(liked, setReload, id)}
+  </div>
+);
+
+const CardSerie = ({ details }) => {
   const [reload, setReload] = useState(false);
   const [data, setData] = useState(details);
   useEffect(() => {
     if (reload)
-      getApi(`http://localhost:3001/series/${data.id}`).then((res) => {
+      getApi(`http://localhost:3001/series/${data.id}`).then(res => {
         const { liked } = res;
         setData({ ...data, liked });
         setReload(false);
       });
   }, [reload, data]);
-
   const { id, name, genre, description, releaseDate, liked, image } = data;
   return (
     <div>
       <div>
-        {!name || <h1>{name}</h1>}
-        {!genre || <h2>{genre}</h2>}
-        {!description || <p>{description}</p>}
-        {!releaseDate || <h2>{releaseDate.split('T')[0]}</h2>}
-        {!liked || liked === 0 || <h2>Favorito</h2>}
-        {![1, 0].includes(liked) || favoriteElement(liked, setReload, id)}
+        {card(id, name, genre, description, releaseDate, liked, setReload)}
       </div>
       {!image || <img src={image} alt={name} />}
       {!releaseDate && (
@@ -60,6 +64,10 @@ const CardSerie = (props) => {
       )}
     </div>
   );
+};
+
+CardSerie.propTypes = {
+  details: PropTypes.string.isRequired,
 };
 
 export default CardSerie;

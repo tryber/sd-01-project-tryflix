@@ -1,4 +1,4 @@
-import React from 'react;'
+import React from 'react;';
 import ListSeries from '../components/ListSeries';
 import getApi from '../service/api';
 
@@ -11,14 +11,15 @@ export async function getServerSideProps() {
   };
 }
 
-const favoritos = (props) => {
-  const { data } = props;
-  return (
-    <div>
-      <h1>Favoritos</h1>
-      <ListSeries list={data} />
-    </div>
-  );
+const favoritos = ({ data }) => (
+  <div>
+    <h1>Favoritos</h1>
+    <ListSeries list={data} />
+  </div>
+);
+
+favoritos.propTypes = {
+  data: PropTypes.string.isRequired,
 };
 
 export default favoritos;

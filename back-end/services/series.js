@@ -1,6 +1,6 @@
 const conn = require('../models/connection');
 
-const connectionPromise = (valueQuery) =>
+const connectionPromise = valueQuery =>
   new Promise((resolve, reject) => {
     conn.query(valueQuery, (err, result) => {
       if (err) reject(err);

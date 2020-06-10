@@ -1,10 +1,9 @@
-import CardSerie from '../../components/CardSerie';
 import React, { useState, useEffect } from 'react';
+import CardSerie from '../../components/CardSerie';
 import getApi from '../../service/api';
 
 export async function getServerSideProps({ params: { id } }) {
   const data = await getApi(`http://localhost:3001/series/${id}`);
-
   return {
     props: {
       data,
@@ -12,8 +11,7 @@ export async function getServerSideProps({ params: { id } }) {
   };
 }
 
-const Details = (props) => {
-  const { data } = props;
+const Details = ({ data }) => {
   const [reload, setReload] = useState(false);
   useEffect(() => {});
   return (
@@ -21,6 +19,10 @@ const Details = (props) => {
       <CardSerie details={data} shouldReload={() => setReload(!reload)} />
     </div>
   );
+};
+
+Details.propTypes = {
+  data: PropTypes.string.isRequired,
 };
 
 export default Details;

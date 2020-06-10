@@ -1,8 +1,7 @@
 import React from 'react';
 import CardSerie from './CardSerie';
 
-const ListReact = (props) => {
-  const { list } = props;
+const ListReact = ({ list }) => {
   return (
     <div>
       {list.map(item => (
@@ -10,6 +9,10 @@ const ListReact = (props) => {
       ))}
     </div>
   );
+};
+
+ListReact.propTypes = {
+  list: PropTypes.string.isRequired,
 };
 
 export default ListReact;
