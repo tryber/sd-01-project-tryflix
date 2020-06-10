@@ -20,6 +20,10 @@
     "/_polyfills": [
       "static/runtime/polyfills.js"
     ],
+    "/favorites": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/list": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"

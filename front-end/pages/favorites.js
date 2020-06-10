@@ -1,6 +1,16 @@
 import React from 'react';
-import fetch from 'node-fetch';
 import ActiveLink from '../components/ActiveLink';
+
+export async function getServerSideProps() {
+  const url = 'http://localhost:3001/favorite';
+  const response = await fetch(url);
+  const series = await response.json();
+  return {
+    props: {
+      series,
+    },
+  };
+}
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -9,29 +19,23 @@ class Favorites extends React.Component {
       data: ''
     }
   }
-  fetchSeries = () => {
+
+  changeFavorite = (id) => {
+    fetch(`http://localhost:3001/favorite/${id}`);
     fetch('http://localhost:3001/favorite')
       .then((res) => res.json())
       .then((result) => this.setState({ data: result }));
   }
-  componentDidMount() {
-    this.fetchSeries();
-  }
-
-  changeFavorite = (id) => {
-    fetch(`http://localhost:3001/favorite/${id}`);
-    this.fetchSeries();
-  }
 
   render() {
-    if (!this.state.data) return <div>Loading...</div>;
+    const data = this.state.data || this.props.series;
     return (
       <div>
         <h1>Meus favoritos</h1>
         <ActiveLink activeClassName="active" href="/list">
           <a className="nav-link">Voltar</a>
         </ActiveLink>
-        {this.state.data.map((serie) => (
+        {data.map((serie) => (
           <div key={serie.id}>
             <ActiveLink activeClassName="active" href={`/series/${serie.id}`}>
               <div>
