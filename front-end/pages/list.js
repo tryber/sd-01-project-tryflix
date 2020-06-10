@@ -36,7 +36,7 @@ class List extends React.Component {
         </ActiveLink>
         {data.map((serie) => (
           <div key={serie.id}>
-            <ActiveLink activeClassName="active" href={`/series/${serie.id}`}>
+            <ActiveLink activeClassName="active" href={`/details/${serie.id}`}>
               <div>
                 <img src={serie.image} width="25%" />
                 <div>
