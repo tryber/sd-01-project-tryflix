@@ -42,7 +42,7 @@ class Favorites extends React.Component {
               </div>
             </ActiveLink>
             <button onClick={() => this.changeFavorite(serie.id)}>
-              {serie.favorite ? "Desfavoritar" : "Favoritar"}
+              Desfavoritar
             </button>
           </div>
         ))}
