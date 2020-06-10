@@ -13,10 +13,6 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/[id]": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -29,6 +25,10 @@
       "static/runtime/polyfills.js"
     ],
     "/index": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/liked": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
