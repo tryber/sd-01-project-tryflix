@@ -22,26 +22,27 @@ const getOne = async (req, res) => {
 const updateFavorite = async (req, res) => {
   const { id } = req.params;
   const { liked } = req.body;
-  if (![0, 1].includes(liked)) return res.status(422).json({ message: 'Invalid Data' });
+  if (![0, 1].includes(liked))
+    return res.status(422).json({ message: 'Invalid Data' });
   const isSeriesExist = await Series.getOneSeries(id);
   if (!isSeriesExist || isSeriesExist.length === 0)
     return res.status(404).json({ message: 'Serie not found' });
   const data = await Series.updateFavoriteSeries(liked, id);
-  if (data.affectedRows === 0) return res.status(400).json({ message: 'Update failed' });
+  if (data.affectedRows === 0)
+    return res.status(400).json({ message: 'Update failed' });
   res.status(200).json({ message: 'Update success!' });
 };
 
 const getAllFavorite = async (_req, res) => {
   const data = await Series.getAllSeriesFavorite();
-  if (!data)
-    return res.status(404).json({ message: 'ERROR' });
+  if (!data) return res.status(404).json({ message: 'ERROR' });
   if (data.length >= 1) {
     const result = services.updateImages(data);
     const sortedList = services.sortedList(result);
     return res.status(200).json(sortedList);
   }
   res.status(200).json(data);
-}
+};
 
 module.exports = {
   getAll,

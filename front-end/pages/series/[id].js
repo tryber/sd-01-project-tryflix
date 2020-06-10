@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import getApi from '../../service/api';
 
 export async function getServerSideProps({ params: { id } }) {
-
-  const data = await getApi(`http://localhost:3001/series/${id}`)
+  const data = await getApi(`http://localhost:3001/series/${id}`);
 
   return {
     props: {
@@ -13,17 +12,14 @@ export async function getServerSideProps({ params: { id } }) {
   };
 }
 
-
 const Details = ({ data }) => {
   const [reload, setReload] = useState(false);
-  useEffect(() => {
-
-  })
+  useEffect(() => {});
   return (
     <div>
       <CardSerie details={data} shouldReload={() => setReload(!reload)} />
     </div>
-  )
-}
+  );
+};
 
 export default Details;

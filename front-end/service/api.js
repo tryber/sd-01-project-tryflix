@@ -1,12 +1,8 @@
 async function getApi(endpoint) {
-  const response = await fetch(
-    `${endpoint}`
-  );
-  const data = await response
-    .json()
-    .then((res) => res);
+  const response = await fetch(`${endpoint}`);
+  const data = await response.json().then(res => res);
 
-  return data
+  return data;
 }
 
 export default getApi;

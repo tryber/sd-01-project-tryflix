@@ -10,15 +10,17 @@ app.use(express.json());
 const apiRoutes = express.Router();
 
 function factory() {
-  apiRoutes.use(express.static(path.resolve(__dirname, '..', 'public', 'images')));
+  apiRoutes.use(
+    express.static(path.resolve(__dirname, '..', 'public', 'images')),
+  );
   apiRoutes.get('/series', rescue(series.getAll));
   apiRoutes.get('/series/:id', rescue(series.getOne));
   apiRoutes.get('/favorito', rescue(series.getAllFavorite));
   apiRoutes.put('/favorito/:id', rescue(series.updateFavorite));
 
-  apiRoutes.use((_req, res) => (
-    res.status(404).json({ message: 'SHOW DE BOLA NADA APARECEU, BURRO!' })
-  ));
+  apiRoutes.use((_req, res) =>
+    res.status(404).json({ message: 'SHOW DE BOLA NADA APARECEU, BURRO!' }),
+  );
   app.use(apiRoutes);
   return app;
 }
