@@ -1,6 +1,9 @@
 import fetch from 'node-fetch';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Router from 'next/router'
+
+import putAPI from '../service/localhostAPI';
 
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Favoritar';
@@ -30,7 +33,7 @@ const seriesList = ({ series }) => (
       {series.map(({ id, name, image, liked }) => (
         <section key={id}>
           <h1>Title: {name}</h1>
-          <h3>{favoriteSerie(liked)}</h3>
+          <h3 onClick={() => (putAPI(id), Router.reload())}>{favoriteSerie(liked)}</h3>
           <Link href={`/${id}`}>
             <img alt={`title-${name}`} src={image} />
           </Link>
