@@ -33,7 +33,6 @@ const updateFavorite = async (req, res) => {
 
 const getAllFavorite = async (_req, res) => {
   const data = await Series.getAllSeriesFavorite();
-  console.log(data)
   if (!data)
     return res.status(404).json({ message: 'ERROR' });
   if (data.length > 1) {
