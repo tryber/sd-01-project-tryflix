@@ -1,3 +1,4 @@
+import React from 'react;'
 import ListSeries from '../components/ListSeries';
 import getApi from '../service/api';
 
@@ -10,7 +11,8 @@ export async function getServerSideProps() {
   };
 }
 
-const favoritos = ({ data }) => {
+const favoritos = (props) => {
+  const { data } = props;
   return (
     <div>
       <h1>Favoritos</h1>
