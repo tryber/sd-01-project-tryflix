@@ -10,7 +10,7 @@ const connectionPromise = valueQuery => {
 };
 
 const getPathImage = name => (
-  `http://localhost:${process.env.PORT}/${name.toLowerCase().replace(' ', '_')}.png`
+  `http://localhost:${process.env.PORTBACK}/${name.toLowerCase().replace(' ', '_')}.png`
 );
 
 const updateImages = item => {

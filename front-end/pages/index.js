@@ -6,6 +6,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <Link href="/favoritos">Favoritos</Link>
+        <Link href="/series">series</Link>
     </div>
   )
 }
