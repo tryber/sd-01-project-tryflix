@@ -17,6 +17,7 @@ class Series {
   static async alternateFavorite(id) {
     const query = `SELECT alternateFavorite(${id})`;
     const alternate = await searchDataBase(query);
+    if (!alternate[0][`alternateFavorite(${id})`]) return false;
     return alternate;
   }
 }
