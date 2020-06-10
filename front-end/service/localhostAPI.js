@@ -20,6 +20,6 @@ const getAPI = async (liked = '') => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 module.exports = { putAPI, getAPI };

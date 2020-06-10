@@ -1,3 +1,4 @@
+import React from 'react';
 import fetch from 'node-fetch';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
