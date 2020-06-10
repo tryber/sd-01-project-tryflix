@@ -13,5 +13,6 @@ app.use(express.static(path.resolve(__dirname, '..', 'public/images')));
 
 
 app.use('/series', routes.seriesList);
+app.use('/favorite', routes.favorite);
 
 app.listen(port, () => console.log(`conectado na porta: ${port}`));

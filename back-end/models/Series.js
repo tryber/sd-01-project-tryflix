@@ -13,6 +13,13 @@ class Series {
     const serie = await searchDataBase(query);
     return serie[0];
   }
+
+  static async alternateFavorite(id) {
+    const query = `SELECT alternateFavorite(${id})`;
+    const alternate = await searchDataBase(query);
+    if (!alternate[0][`alternateFavorite(${id})`]) return false;
+    return alternate;
+  }
 }
 
 module.exports = Series;
