@@ -13,6 +13,7 @@ function factory() {
   apiRoutes.use(express.static(path.resolve(__dirname, '..', 'public', 'images')));
   apiRoutes.get('/series', rescue(series.getAll));
   apiRoutes.get('/series/:id', rescue(series.getOne));
+  apiRoutes.get('/favorito', rescue(series.getAllFavorite));
   apiRoutes.put('/favorito/:id', rescue(series.updateFavorite));
 
   apiRoutes.use((_req, res) => (
