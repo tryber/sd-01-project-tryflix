@@ -17,8 +17,14 @@ class Series {
   static async alternateFavorite(id) {
     const query = `SELECT alternateFavorite(${id})`;
     const alternate = await searchDataBase(query);
-    if (!alternate[0][`alternateFavorite(${id})`]) return false;
+    if (alternate[0][`alternateFavorite(${id})`] === null) return false;
     return alternate;
+  }
+
+  static async listFavoriteSeries() {
+    const query = 'SELECT id, name, image FROM series WHERE favorite = 1 ORDER BY name;';
+    const data = await searchDataBase(query);
+    return data;
   }
 }
 
