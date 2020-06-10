@@ -33,7 +33,15 @@ const detailSerie = ({ serie }) => (
     <ul>
       <section>
         <h1>Título: {serie.name}</h1>
-        <h3 onClick={() => (putAPI(serie.id), Router.reload())} >{favoriteSerie(serie.liked)}</h3>
+        <button
+          type="button"
+          onClick={() => {
+            putAPI(serie.id);
+            Router.reload();
+          }}
+        >
+          {favoriteSerie(serie.liked)}
+        </button>
         <img alt={serie.name} src={serie.image} />
         <h3>Gênero: {serie.genre}</h3>
         <h3>Data de Lançamento: {serie.releaseDate}</h3>
