@@ -40,7 +40,14 @@ const detailSerie = ({ serie }) => (
 );
 
 detailSerie.propTypes = {
-  serie: PropTypes.object.isRequired,
-}
+  serie: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    liked: PropTypes.bool.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default detailSerie;

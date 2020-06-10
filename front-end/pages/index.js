@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Favoritar';
@@ -39,8 +40,13 @@ const seriesList = ({ series }) => (
   </div>
 );
 
-detailSerie.propTypes = {
-  series: PropTypes.object.isRequired,
-}
+seriesList.propTypes = {
+  series: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    liked: PropTypes.bool.isRequired,
+  })).isRequired,
+};
 
 export default seriesList;

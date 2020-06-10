@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Favoritar';
@@ -40,16 +41,21 @@ const favoritesSeries = ({ series }) => (
 );
 
 favoritesSeries.propTypes = {
-  series: PropTypes.object,
-}
+  series: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    liked: PropTypes.bool,
+  }),
+};
 
-favoritesSeries.defaulProps = {
+favoritesSeries.defaultProps = {
   series: {
     id: 1,
     name: 'Adicione alguma série',
     image: 'Visualize as imagens das suas séries',
     liked: false,
-  }
-}
+  },
+};
 
 export default favoritesSeries;
