@@ -16,9 +16,9 @@ const ListSeries = (series, title, linkText, link = '', setList) => (
       {series.map(({ id, name, image, liked }) => (
         <section key={id}>
           <h1>Título: {name}</h1>
-          <label onClick={() => setList(id)}>
-            <h3>{favoriteSerie(liked)}</h3>
-          </label>
+          <section>
+            <a onClick={() => setList(id)}>{favoriteSerie(liked)}</a>
+          </section>
           <Link href={`/${id}`}>
             <img alt={`title-${name}`} src={image} />
           </Link>
