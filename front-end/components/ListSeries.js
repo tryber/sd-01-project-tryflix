@@ -17,7 +17,9 @@ const ListSeries = (series, title, linkText, link = '', setList) => (
         <section key={id}>
           <h1>Título: {name}</h1>
           <section>
-            <a onClick={() => setList(id)}>{favoriteSerie(liked)}</a>
+            <button type="button" onClick={() => setList(id)}>
+              <h3>{favoriteSerie(liked)}</h3>
+            </button>
           </section>
           <Link href={`/${id}`}>
             <img alt={`title-${name}`} src={image} />

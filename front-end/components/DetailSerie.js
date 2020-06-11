@@ -16,7 +16,9 @@ const DetailSerie = (serie, setList) => (
       <section>
         <h1>Título: {serie.name}</h1>
         <section>
-          <a onClick={() => setList(serie.id)} >{favoriteSerie(serie.liked)}</a>
+          <button type="button" onClick={() => setList(serie.id)}>
+            <h3>{favoriteSerie(serie.liked)}</h3>
+          </button>
         </section>
         <img alt={serie.name} src={serie.image} />
         <h3>Gênero: {serie.genre}</h3>
