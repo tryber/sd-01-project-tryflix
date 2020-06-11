@@ -20,8 +20,8 @@ const ListSeries = (series, title, linkText, link = '', setList, list) => (
           <h1>Título: {name}</h1>
           <section>
             <button
-            type="button"
-            onClick={() => renderFavorite(setList, id, list)}
+              type="button"
+              onClick={() => renderFavorite(setList, id, list)}
             >
               <h3>{favoriteSerie(liked)}</h3>
             </button>
