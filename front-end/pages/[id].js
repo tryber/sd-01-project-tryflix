@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { getAPI, renderCliente } from '../service/seriesAPI';
+import { getAPI } from '../service/seriesAPI';
+import { renderCliente } from '../service/updatePages';
 import DetailSerie from '../components/DetailSerie';
 
 export async function getServerSideProps({ params: { id } }) {
@@ -23,7 +24,7 @@ const detailSerie = ({ data }) => {
   }, [list]);
 
   if (!serie) return 'Loading';
-  return DetailSerie(serie, setList);
+  return DetailSerie(serie, setList, list);
 };
 
 detailSerie.propTypes = {

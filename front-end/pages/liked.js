@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ListSeries from '../components/ListSeries';
-import { getAPI, renderCliente } from '../service/seriesAPI';
+import { getAPI } from '../service/seriesAPI';
+import { renderCliente } from '../service/updatePages';
 
 export async function getServerSideProps() {
   const data = await getAPI('liked');
@@ -23,7 +24,7 @@ const favoritesSeries = ({ data }) => {
   }, [list]);
 
   if (!series) return 'Loading';
-  return ListSeries(series, 'Meus Favoritos', 'Voltar', '', setList);
+  return ListSeries(series, 'Meus Favoritos', 'Voltar', '', setList, list);
 };
 
 favoritesSeries.propTypes = {

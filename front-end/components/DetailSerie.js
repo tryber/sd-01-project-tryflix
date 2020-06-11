@@ -1,12 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { renderFavorite } from '../service/updatePages';
+
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Série Desfavorita';
   return 'Série Favorita';
 };
 
-const DetailSerie = (serie, setList) => (
+const DetailSerie = (serie, setList, list) => (
   <div>
     <h1>{serie.name}</h1>
     <Link href={'/'}>
@@ -16,7 +18,7 @@ const DetailSerie = (serie, setList) => (
       <section>
         <h1>Título: {serie.name}</h1>
         <section>
-          <button type="button" onClick={() => setList(serie.id)}>
+          <button type="button" onClick={() => renderFavorite(setList, serie.id, list)}>
             <h3>{favoriteSerie(serie.liked)}</h3>
           </button>
         </section>
