@@ -1,50 +1,33 @@
-import React from 'react';
-import fetch from 'node-fetch';
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Router from 'next/router';
 
-import { putAPI } from '../service/localhostAPI';
-
-const favoriteSerie = (liked) => {
-  if (liked === false) return 'Série Desfavorita';
-  return 'Série Favorita';
-};
+import { getAPI, renderCliente } from '../service/seriesAPI';
+import DetailSerie from '../components/DetailSerie';
 
 export async function getServerSideProps({ params: { id } }) {
-  const response = await fetch(
-    `http://localhost:3001/${id}`,
-  );
-  const serie = await response.json();
+  const data = await getAPI(id);
 
   return {
     props: {
-      serie,
+      data,
     },
   };
 }
 
-const detailSerie = ({ serie }) => (
-  <div>
-    <h1>{serie.name}</h1>
-    <Link href={'/'}>
-      <a>Voltar</a>
-    </Link>
-    <ul>
-      <section>
-        <h1>Título: {serie.name}</h1>
-        <h3 onClick={() => (putAPI(serie.id), Router.reload())} >{favoriteSerie(serie.liked)}</h3>
-        <img alt={serie.name} src={serie.image} />
-        <h3>Gênero: {serie.genre}</h3>
-        <h3>Data de Lançamento: {serie.releaseDate}</h3>
-        <p>Sinopse: {serie.description}</p>
-      </section>
-    </ul>
-  </div>
-);
+const detailSerie = ({ data }) => {
+  const [list, setList] = useState(0);
+  const [serie, setSeries] = useState(data);
+
+  useEffect(() => {
+    renderCliente(setSeries, list, serie.id);
+  }, [list]);
+
+  if (!serie) return 'Loading';
+  return DetailSerie(serie, setList);
+};
 
 detailSerie.propTypes = {
-  serie: PropTypes.shape({
+  data: PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     liked: PropTypes.bool.isRequired,
