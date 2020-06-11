@@ -25,4 +25,4 @@ export const getAPI = async (liked = '') => {
 export const renderCliente = async (setSeries, list, liked = '') => {
   if (list !== 0) await putAPI(list);
   setSeries(await getAPI(liked));
-}
+};
