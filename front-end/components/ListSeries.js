@@ -1,15 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import Router from 'next/router';
 
-import { putAPI } from '../service/localhostAPI';
+import { renderFavorite } from '../service/updatePages';
 
 const favoriteSerie = (liked) => {
   if (liked === false) return 'Favoritar';
   return 'Desfavoritar';
 };
 
-const ListSeries = (series, title, linkText, link = '') => (
+const ListSeries = (series, title, linkText, link = '', setList, list) => (
   <div>
     <h1>{title}</h1>
     <Link href={`/${link}`}>
@@ -18,18 +17,15 @@ const ListSeries = (series, title, linkText, link = '') => (
     <ul>
       {series.map(({ id, name, image, liked }) => (
         <section key={id}>
-          <h1>Title: {name}</h1>
-          <p>
+          <h1>Título: {name}</h1>
+          <section>
             <button
               type="button"
-              onClick={() => {
-                putAPI(id);
-                Router.reload();
-              }}
+              onClick={() => renderFavorite(setList, id, list)}
             >
-              {favoriteSerie(liked)}
+              <h3>{favoriteSerie(liked)}</h3>
             </button>
-          </p>
+          </section>
           <Link href={`/${id}`}>
             <img alt={`title-${name}`} src={image} />
           </Link>

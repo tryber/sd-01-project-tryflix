@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 const API_SERIES = 'http://localhost:3001/';
 
-const putAPI = async (id) => {
+export const putAPI = async (id) => {
   try {
     const response = await fetch(`${API_SERIES}${id}`, { method: 'PUT' });
     const data = await response.json();
@@ -12,7 +12,7 @@ const putAPI = async (id) => {
   }
 };
 
-const getAPI = async (liked = '') => {
+export const getAPI = async (liked = '') => {
   try {
     const response = await fetch(`${API_SERIES}${liked}`);
     const data = await response.json();
@@ -22,4 +22,7 @@ const getAPI = async (liked = '') => {
   }
 };
 
-module.exports = { putAPI, getAPI };
+export const renderCliente = async (setSeries, list, liked = '') => {
+  if (list !== 0) await putAPI(list);
+  setSeries(await getAPI(liked));
+};
