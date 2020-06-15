@@ -1,7 +1,7 @@
 import { putAPI, getAPI } from './seriesAPI';
 
 export const renderFavorite = async (setList, id, list) => {
-  if (list !== 0) await setList(0);
+  if (list === id) await setList(0);
   await setList(id);
 };
 
